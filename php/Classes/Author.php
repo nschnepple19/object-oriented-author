@@ -126,4 +126,17 @@ class Author {
 		//store the url
 		$this->authorAvatarUrl = $newAuthorAvatarUrl;
 	}
+	/**
+	 * accessor method for email
+	 *
+	 * @return string value of email
+	 */
+	public function getAuthorEmail(): string {
+		return $this->authorEmail;
+	}
+	/**
+	 * mutator method for email
+	 *
+	 *
+	 */
 }
