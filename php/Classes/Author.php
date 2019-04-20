@@ -184,4 +184,10 @@ class Author {
 		if($authorHashInfo["algoName"] !== "argon2i") {
 			throw(new \InvalidArgumentException("author hash is not a valid hash"));
 		}
+		//enforce that the hash is exactly 97 characters.
+		if(strlen($newAuthorHash) !== 97) {
+			throw(new \RangeException("author hash must be 97 characters"));
+		}
+		//store the hash
+		$this->authorHash = $newAuthorHash;
 }
