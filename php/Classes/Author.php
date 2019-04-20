@@ -224,5 +224,14 @@ class Author {
 		// verify the username is secure
 		$newAuthorUsername = trim($newAuthorUsername);
 		$newAuthorUsername = filter_var($newAuthorUsername, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newAuthorUsername) === true) {
+			throw(new \InvalidArgumentException("author username is empty or insecure"));
+		}
+		// verify the username will fit in the database
+		if(strlen($newAuthorUsername) > 32) {
+			throw(new \RangeException("author username is too large"));
+		}
+		// store the username
+		$this->authorUsername = $newAuthorUsername;
 		}
 }
