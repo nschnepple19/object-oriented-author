@@ -112,5 +112,18 @@ class Author {
 	 * @throws \RangeException if $newAvatarUrl is > 32 characters
 	 * @throws \TypeError if $newAvatarUrl is not a string
 	 */
-
+	public function setAuthorAvatarUrl(string $newAuthorAvatarUrl) : void {
+		// verify that the Url is secure
+		$newAuthorAvatarUrl = trim($newAuthorAvatarUrl);
+		$newAuthorAvatarUrl = filter_var($newAuthorAvatarUrl, FILTER_SANITIZE_STRING, FILTER_FLAGNO_ENCODE_QUOTES);
+		if(empty($newAuthorAvatarUrl) === true) {
+			throw(new \InvalidArgumentException("author url is empty or insecure"));
+		}
+		// verify the url will fit in the database
+		if(strlen($newAuthorAvatarUrl) > 32) {
+			throw(new \rangeException("author url is too large"));
+		}
+		//store the url
+		$this->authorAvatarUrl = $newAuthorAvatarUrl;
+	}
 }
