@@ -16,7 +16,7 @@ class Author {
 	 **/
 	private $authorId;
 	/**
-	 * token is handed out to verify that the profile is valid and not malicious.
+	 * token is handed out to verify that the Author is valid and not malicious.
 	 * @var $authorActivationToken
 	 **/
 	private $authorActivationToken;
@@ -26,13 +26,13 @@ class Author {
 	 **/
 	private $authorAvatarUrl;
 	/**
-	 *
-	 *
+	 * email for this Author; this is a unique index
+	 * @var string $authorEmail
 	 **/
 	private $authorEmail;
 	/**
-	 *
-	 *
+	 * hash for author password
+	 * @var string $authorHash
 	 **/
 	private $authorHash;
 	/**
@@ -41,9 +41,20 @@ class Author {
 	 **/
 	private $authorUsername;
 	/**
-	 *
-	 *
+	 * salt for author password
+	 * @var $authorSalt
 	 **/
 	private $authorSalt;
 
+	/**
+	 * accessor method for authorId
+	 * @return Uuid value of authorId (or null if new Author)
+	 */
+
+	/**
+	 * @return Uuid
+	 */
+	public function getAuthorId() {
+		return ($this->authorId);
+	}
 }
