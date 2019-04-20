@@ -153,5 +153,35 @@ class Author {
 		if(strlen($newAuthorEmail) > 128) {
 			throw(new \RangeException("author email is too large"));
 		}
+		//store the email
+		$this->authorEmail = $newAuthorEmail;
 	}
+	/**
+	 * accessor method for authorHash
+	 *
+	 * @return string value of hash
+	 */
+	public function getAuthorHash(): string {
+		return $this->authorHash;
+	}
+
+	/**
+	 * mutator method for author hash password
+	 *
+	 * @param string $newAuthorHash
+	 * @throws \InvalidArgumentException if the hash is not secure
+	 * @throws \RangeException if the hash is not 128 characters
+	 * @throws \TypeError if author hash is not a string
+	 */
+	public function setAuthorHash(string $newAuthorHash): void {
+		//enforce that the hash is properly formatted
+		$newAuthorHash = trim($newAuthorHash);
+		if(empty($newAuthorHash) === true) {
+			throw(new \InvalidArgumentException("author password hash empty or insecure"));
+		}
+		//enforce the hash is really an Argon hash
+		$authorHashInfo = password_get_info($newAuthorHash);
+		if($authorHashInfo["algoName"] !== "argon2i") {
+			throw(new \InvalidArgumentException("author hash is not a valid hash"));
+		}
 }
