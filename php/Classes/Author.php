@@ -1,6 +1,6 @@
 <?php
 
-namespace Nschnepple\ObjectOrientedAuthor;
+namespace Nschnepple\ObjectOriented;
 
 require_once(dirname(__DIR__, 2) . "/composer.json/autoloader.php");
 
@@ -57,4 +57,29 @@ class Author {
 	public function getAuthorId() {
 		return ($this->authorId);
 	}
+	/**
+	 * mutator method for authorId
+	 *
+	 * @param Uuid| string $newAuthorId value of new authorId
+	 * @throws \RangeException if $newAuthorId is not positive
+	 * @throws \TypeError if the authorId is not
+	 */
+
+	public function setAuthorActivationToken(?string $newAuthorActivationToken): void {
+		if($newAuthorActivationToken === null) {
+			$this->authorActivationToken = null;
+			return;
+		}
+		$newAuthorActivationToken = strtolower(trim($newAuthorActivationToken) === false); {
+			throw(new\RangeException("user activation is not valid"));
+		}
+		//make sure user activation token is only 32 characters
+		if(strlen($newAuthorActivationToken) !== 32) {
+			throw(new\RangeException("user activation has to be 32"));
+		}
+		$this->authorActivationToken = $newAuthorActivationToken;
+	}
+	/**
+	 * accessor method for
+	 */
 }
