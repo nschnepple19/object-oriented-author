@@ -51,10 +51,7 @@ class Author {
 	 * @return Uuid value of authorId (or null if new Author)
 	 */
 
-	/**
-	 * @return Uuid
-	 */
-	public function getAuthorId() {
+	public function getAuthorId(): Uuid {
 		return ($this->authorId);
 	}
 	/**
@@ -65,21 +62,15 @@ class Author {
 	 * @throws \TypeError if the authorId is not
 	 */
 
-	public function setAuthorActivationToken(?string $newAuthorActivationToken): void {
-		if($newAuthorActivationToken === null) {
-			$this->authorActivationToken = null;
-			return;
+	public function setAuthorId($newAuthorId): void {
+		try {
+			$uuid = self::validateUuid($newAuthorId);
+		}catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
-		$newAuthorActivationToken = strtolower(trim($newAuthorActivationToken) === false); {
-			throw(new\RangeException("user activation is not valid"));
-		}
-		//make sure user activation token is only 32 characters
-		if(strlen($newAuthorActivationToken) !== 32) {
-			throw(new\RangeException("user activation has to be 32"));
-		}
-		$this->authorActivationToken = $newAuthorActivationToken;
+		//convert and store the authorId
+		$this->profileId = $uuid;
 	}
-	/**
-	 * accessor method for
-	 */
 }
