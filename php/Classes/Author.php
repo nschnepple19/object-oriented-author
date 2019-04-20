@@ -54,6 +54,7 @@ class Author {
 	public function getAuthorId(): Uuid {
 		return ($this->authorId);
 	}
+
 	/**
 	 * mutator method for authorId
 	 *
@@ -65,7 +66,7 @@ class Author {
 	public function setAuthorId($newAuthorId): void {
 		try {
 			$uuid = self::validateUuid($newAuthorId);
-		}catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
@@ -73,14 +74,16 @@ class Author {
 		//convert and store the authorId
 		$this->profileId = $uuid;
 	}
+
 	/**
 	 * accessor methd for author activation token
 	 *
 	 * @return string value of the activation token
 	 */
-	public function getAuthorActivationToken() : ?string {
+	public function getAuthorActivationToken(): ?string {
 		return ($this->authorActivationToken);
 	}
+
 	/**
 	 * mutator method for author activation token
 	 *
@@ -104,6 +107,7 @@ class Author {
 		}
 		$this->authorActivationToken = $newAuthorActivationToken;
 	}
+
 	/**
 	 * accessor method for avatar url
 	 *
@@ -112,7 +116,7 @@ class Author {
 	 * @throws \RangeException if $newAvatarUrl is > 32 characters
 	 * @throws \TypeError if $newAvatarUrl is not a string
 	 */
-	public function setAuthorAvatarUrl(string $newAuthorAvatarUrl) : void {
+	public function setAuthorAvatarUrl(string $newAuthorAvatarUrl): void {
 		// verify that the Url is secure
 		$newAuthorAvatarUrl = trim($newAuthorAvatarUrl);
 		$newAuthorAvatarUrl = filter_var($newAuthorAvatarUrl, FILTER_SANITIZE_STRING, FILTER_FLAGNO_ENCODE_QUOTES);
@@ -126,6 +130,7 @@ class Author {
 		//store the url
 		$this->authorAvatarUrl = $newAuthorAvatarUrl;
 	}
+
 	/**
 	 * accessor method for email
 	 *
@@ -134,6 +139,7 @@ class Author {
 	public function getAuthorEmail(): string {
 		return $this->authorEmail;
 	}
+
 	/**
 	 * mutator method for email
 	 *
@@ -156,6 +162,7 @@ class Author {
 		//store the email
 		$this->authorEmail = $newAuthorEmail;
 	}
+
 	/**
 	 * accessor method for authorHash
 	 *
@@ -190,4 +197,32 @@ class Author {
 		}
 		//store the hash
 		$this->authorHash = $newAuthorHash;
+	}
+
+	/**
+	 * accessor method for username
+	 *
+	 * @return string value of username or null
+	 **/
+	public function getAuthorUsername(): ?string {
+		return ($this->AuthorUsername);
+	}
+	/**
+	 * mutator method for username
+	 *
+	 * @param string $newAuthorUsername new value of username
+	 * @throws \InvalidArgumentException if $newUsername is not a string or insecure
+	 * @throws \RangeException if $newUsername is > 32 characters
+	 * @throws \TypeError if $newUsername is not a string
+	 */
+	public function setAuthorUsername(?string $newAuthorUsername): void {
+		//if $authorUsername is null return it right away
+		if($newAuthorUsername === null) {
+			$this->authorUsername = null;
+			return;
+		}
+		// verify the username is secure
+		$newAuthorUsername = trim($newAuthorUsername);
+		$newAuthorUsername = filter_var($newAuthorUsername, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		}
 }
