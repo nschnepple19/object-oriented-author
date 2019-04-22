@@ -6,7 +6,7 @@ require_once(dirname(__DIR__, 2) . "/composer.json/autoloader.php");
 
 use Ramsey\Uuid\Uuid;
 /**
- *
+ *@author Nick Schnepple <nickschnepple@cnm.edu>
  **/
 class Author {
 	use ValidateUuid;
