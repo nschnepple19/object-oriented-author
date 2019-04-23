@@ -2,7 +2,7 @@
 
 namespace Nschnepple\ObjectOriented;
 
-require_once(dirname(__DIR__, 2) . "/composer.json/autoload.php");
+require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
 
 use Ramsey\Uuid\Uuid;
 /**
@@ -61,8 +61,7 @@ class Author {
 			$this->setAuthorUsername($newAuthorEmail);
 		}//
 		catch(\InvalidArgumentException | \RangeException |\Exception | \TypeError $exception) {
-			$exceptionType = get_class($exception);
-			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+			echo "You Goofed";
 		}
 	}
 
@@ -256,3 +255,5 @@ class Author {
 		$this->authorUsername = $newAuthorUsername;
 		}
 }
+
+
