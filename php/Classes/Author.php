@@ -2,6 +2,7 @@
 
 namespace Nschnepple\ObjectOriented;
 
+
 require_once(dirname(__DIR__) . "/vendor/autoload.php");
 
 use Ramsey\Uuid\Uuid;
@@ -52,13 +53,14 @@ class Author {
 	 *
 	 */
 
-	public function __construct(string $newAuthorId, string $newauthorAvatarUrl, string $newAuthorActivationToken, string $newAuthorEmail, string $newAuthorUsername) {
+	public function __construct(string $newAuthorId, string $newauthorAvatarUrl, string $newAuthorActivationToken, string $newAuthorEmail, string $newAuthorUsername, string $newAuthorHash) {
 		try {
 			$this->setAuthorId($newAuthorId);
 			$this->setAuthorAvatarUrl($newauthorAvatarUrl);
 			$this->setAuthorActivationToken($newAuthorActivationToken);
 			$this->setAuthorEmail($newAuthorEmail);
-			$this->setAuthorUsername($newAuthorEmail);
+			$this->setAuthorUsername($newAuthorUsername);
+			$this->setAuthorHash($newAuthorHash);
 		}//
 		catch(\InvalidArgumentException | \RangeException |\Exception | \TypeError $exception) {
 			echo "You Goofed";

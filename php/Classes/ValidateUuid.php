@@ -1,5 +1,5 @@
 <?php
-namespace Nschnepplen\ObjectOriented;
+namespace Nschnepple\ObjectOriented;
 require_once(dirname(__DIR__) . "/vendor/autoload.php");
 use Ramsey\Uuid\Uuid;
 /**

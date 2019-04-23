@@ -6,11 +6,13 @@
 require_once(dirname( __DIR__) . "/vendor/autoload.php");
 require_once(dirname(__DIR__) . "/classes/autoload.php");
 
-	$authorId = new Author();
+use Nschnepple\ObjectOriented\Author;
 
-	$authorId->set_Id("f805a6fb-83c8-4690-bcb2-19b170cfc8f8");
+	$authorId = new Author("f805a6fb-83c8-4690-bcb2-19b170cfc8f8", "shootdang.com", "0abf9d115769410ab1d55e0acec5f8b0", "shootdang2019@gmail.com", "iNvck", "This Was Rough!");
 
-	echo "author id: " . $authorId->get_id();
+	$authorId->setAuthorId("f805a6fb-83c8-4690-bcb2-19b170cfc8f8");
 
-	var_dump(Author::getAuthorByAuthorId($pdo, $authorId->getAuthorId()));
+//	echo "author id: " . $authorId->getAuthorId();
+
+	var_dump($authorId);
 
