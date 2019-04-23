@@ -2,7 +2,7 @@
 
 namespace Nschnepple\ObjectOriented;
 
-require_once(dirname(__DIR__, 2) . "/composer.json/autoloader.php");
+require_once(dirname(__DIR__, 2) . "/composer.json/autoload.php");
 
 use Ramsey\Uuid\Uuid;
 /**
@@ -47,6 +47,27 @@ class Author {
 	private $authorSalt;
 
 	/**
+	 * constructor for author
+	 *
+	 *
+	 */
+
+	public function __construct(string $newAuthorId, string $newauthorAvatarUrl, string $newAuthorActivationToken, string $newAuthorEmail, string $newAuthorUsername) {
+		try {
+			$this->setAuthorId($newAuthorId);
+			$this->setAuthorAvatarUrl($newauthorAvatarUrl);
+			$this->setAuthorActivationToken($newAuthorActivationToken);
+			$this->setAuthorEmail($newAuthorEmail);
+			$this->setAuthorUsername($newAuthorEmail);
+		}//
+		catch(\InvalidArgumentException | \RangeException |\Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+	}
+
+
+	/**
 	 * accessor method for authorId
 	 * @return Uuid value of authorId (or null if new Author)
 	 */
@@ -72,7 +93,7 @@ class Author {
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
 		//convert and store the authorId
-		$this->profileId = $uuid;
+		$this->authorId = $uuid;
 	}
 
 	/**
