@@ -37,8 +37,8 @@ class Author {
 	 **/
 	private $authorHash;
 	/**
-	 *
-	 *
+	 * username for this author
+	 * @var string fro $authorUsername
 	 **/
 	private $authorUsername;
 	/**
@@ -61,7 +61,7 @@ class Author {
 			$this->setAuthorEmail($newAuthorEmail);
 			$this->setAuthorUsername($newAuthorUsername);
 			$this->setAuthorHash($newAuthorHash);
-		}//
+		}
 		catch(\InvalidArgumentException | \RangeException |\Exception | \TypeError $exception) {
 			echo "You Goofed";
 		}
@@ -227,7 +227,7 @@ class Author {
 	 * @return string value of username or null
 	 **/
 	public function getAuthorUsername(): ?string {
-		return ($this->AuthorUsername);
+		return ($this->authorUsername);
 	}
 	/**
 	 * mutator method for username

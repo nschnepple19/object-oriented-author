@@ -8,11 +8,12 @@ require_once(dirname(__DIR__) . "/classes/autoload.php");
 
 use Nschnepple\ObjectOriented\Author;
 
-	$authorId = new Author("f805a6fb-83c8-4690-bcb2-19b170cfc8f8", "shootdang.com", "0abf9d115769410ab1d55e0acec5f8b0", "shootdang2019@gmail.com", "iNvck", "This Was Rough!");
+	$authorId = new Author("f805a6fb-83c8-4690-bcb2-19b170cfc8f8", "shootdang.com", "0abf9d115769410ab1d55e0acec5f8b0", "shootdang2019@gmail.com", "iNvck", "$argon2i$v=19$m=1024,t=384,p=2$T1B6Ymdqa3FJdmZqaDdqYg$hhyC1jf2WjbgfD8Jp6GZE9Tg3IpsYpXKm2VWYOJq8LA");
 
-	$authorId->setAuthorId("f805a6fb-83c8-4690-bcb2-19b170cfc8f8");
 
-//	echo "author id: " . $authorId->getAuthorId();
+
 
 	var_dump($authorId);
+
+
 
