@@ -256,6 +256,14 @@ class Author {
 		// store the username
 		$this->authorUsername = $newAuthorUsername;
 		}
+		public function insert(\PDO $pdo) : void {
+
+		$query = "INSERT INTO Author(authorId, authorAvatarUrl, authorActivationToken, authorEmail, authorUsername, authorHash) VALUES(:authorId, :authorAvatarUrl, :authorActivationToken, :authorEmail, :authorUsername, :auhtorHash)";
+				$statement = $pdo->prepare($query);
+
+				$pararmeters = ["authorId" => $this->authorId->getBytes(), "authorAvatarUrl" => $this->authorAvatarUrl, "authorActivationToken" => $this->authorActivationToken->getBytes(), "authorEmail" => $this->authorEmail, "authorUsername" => $this->authorUsername, "authorHash" => $this->authorHash];
+				$statement->execute($pararmeters);
+		}
 }
 
 
