@@ -272,7 +272,7 @@ class Author {
 		$query = "INSERT INTO Author(authorId, authorAvatarUrl, authorActivationToken, authorEmail, authorUsername, authorHash) VALUES(:authorId, :authorAvatarUrl, :authorActivationToken, :authorEmail, :authorUsername, :auhtorHash)";
 				$statement = $pdo->prepare($query);
 
-				$pararmeters = ["authorId" => $this->authorId->getBytes(), "authorAvatarUrl" => $this->authorAvatarUrl, "authorActivationToken" => $this->authorActivationToken->getBytes(), "authorEmail" => $this->authorEmail, "authorUsername" => $this->authorUsername, "authorHash" => $this->authorHash];
+				$pararmeters = ["authorId" => $this->authorId->getBytes(), "authorAvatarUrl" => $this->authorAvatarUrl, "authorActivationToken" => $this->authorActivationToken, "authorEmail" => $this->authorEmail, "authorUsername" => $this->authorUsername, "authorHash" => $this->authorHash];
 				$statement->execute($pararmeters);
 		}
 
@@ -307,6 +307,11 @@ class Author {
 
 		//create query template
 		$query = "UPDATE Author SET authorAvatarUrl = :authorAvatarUrl, authorActivationToken = :authorActivationToken, authorEmail = :authorEmail, authorUsername = :authorUsername, authorHash = :authorHash WHERE authorId = :authorId";
+		$statement = $pdo->prepare($query);
+
+		$parameters = ["authorId" => $this->authorId->getBytes(), "authorAvatarUrl" => $this->authorAvatarUrl, "authorActivationToken" => $this->authorActivationToken, "authorEmail" => $this->authorEmail,
+		"authorUsername" => $this->authorUsername, "authorHash" => $this->authorHash];
+		$statement->execute($parameters);
 	}
 }
 
