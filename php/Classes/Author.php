@@ -324,7 +324,7 @@ class Author {
 	 * @throws \TypeError when a variable are not the correct data type
 	 */
 
-	public static function getAuthorByAuthorId(\PDO $pdo, $tweetId) : ?Author {
+	public static function getAuthorByAuthorId(\PDO $pdo, $authorId) : ?Author {
 		// sanitize the authorId before searching
 		try {
 			$authorId = self::validateUuid($authorId);
@@ -333,7 +333,14 @@ class Author {
 {
 		 throw (new \PDOException($exception->getMessage(), 0, $exception));
 		}
-		
+		 //create query template
+		$query = "SELECT authorId, authorAvatarUrl, authorActivationToken, authorEmail, authorUsername, authorHash FROM author WHERE authorId = :authorId";
+
+		$statement = $pdo->prepare($query);
+
+		// bind the author id to the place holder in the template
+		$parameters = ["authorId" => $authorId->getBytes()];
+		$statement->execute($parameters);
 	}
 }
 
