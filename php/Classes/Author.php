@@ -357,6 +357,26 @@ class Author {
 		return($author);
 	}
 
+	/**
+	 * gets all authors
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @return \SplFixedArray SplFixedArray of authors found or null if not found
+	 *
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError whe variables are not in the correct data type
+	 */
+	public static function getAllAuthors(PDO $pdo) : \SplFixedArray {
+		//create query template
+		$query = "SELECT authorId, authorAvatarUrl, authorActivationToken, authorEmail, authorUsername, authorHash";
+
+		$statement = $pdo->prepare($query);
+		$statement->execute();
+
+		//build an array of authors
+		$authors = new \SplFixedArray($statement->rowCount());
+	}
+
 }
 
 
